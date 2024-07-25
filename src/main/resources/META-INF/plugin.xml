@@ -1,18 +1,27 @@
-<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <id>com.github.melisunsal.detectionplugin</id>
-    <name>detectionPlugin</name>
-    <vendor>melisunsal</vendor>
+<id>com.github.melisunsal.detectionplugin</id>
+<name>Anti Pattern Analysis</name>
+<version>1.0</version>
+<vendor>melisunsal</vendor>
 
-    <depends>com.intellij.modules.platform</depends>
+<description>
+    Anti Pattern Analysis plugin for detecting various anti-patterns in Java code.
+</description>
 
-    <resource-bundle>messages.MyBundle</resource-bundle>
+<depends>com.intellij.modules.platform</depends>
 
-    <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.melisunsal.detectionplugin.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
-    </extensions>
+<actions>
+    <action id="AntiPatternAnalysis.ToolWindow" class="com.github.melisunsal.detectionplugin.AntiPatternToolWindowAction" text="Anti Pattern Analysis" description="Run anti pattern analysis">
+        <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+</actions>
 
-    <applicationListeners>
-        <listener class="com.github.melisunsal.detectionplugin.listeners.MyApplicationActivationListener" topic="com.intellij.openapi.application.ApplicationActivationListener"/>
-    </applicationListeners>
+<extensions defaultExtensionNs="com.intellij">
+    <toolWindow id="Anti Pattern Analysis" anchor="right" factoryClass="com.github.melisunsal.detectionplugin.AntiPatternToolWindowFactory"/>
+</extensions>
+
+<applicationListeners>
+    <listener class="com.github.melisunsal.detectionplugin.listeners.MyApplicationActivationListener" topic="com.intellij.openapi.application.ApplicationActivationListener"/>
+</applicationListeners>
 </idea-plugin>
+
